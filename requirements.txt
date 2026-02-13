@@ -9,3 +9,4 @@ beautifulsoup4
 lxml
 cffi
 streamlit-echarts
+finance-datareader
