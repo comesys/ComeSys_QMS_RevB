@@ -12,3 +12,4 @@ streamlit-echarts
 finance-datareader
 selenium
 webdriver-manager
+plotly==5.22.0
