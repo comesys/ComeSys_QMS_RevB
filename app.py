@@ -3739,7 +3739,7 @@ with tab13:
 
     # 동영상 출력
 # 상대 경로 직접 지정
-video_path = "movie/intro_v1.mp4" 
+video_path = "movie/product_intro_new.mp4" 
 
 if os.path.exists(video_path):
     with open(video_path, 'rb') as f:
