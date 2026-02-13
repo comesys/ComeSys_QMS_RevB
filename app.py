@@ -3019,7 +3019,7 @@ with tab5:
 	)
 
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
-	st.plotly_chart(fig14, use_container_width=True)
+	st.plotly_chart(fig14, use_container_width=True, key="fig14_tab5_summary")
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 
 	st.markdown('<h4><div style="text-align: left;">📋기간별현황정리(부적합 발생분)</div></h4>', unsafe_allow_html=True)
