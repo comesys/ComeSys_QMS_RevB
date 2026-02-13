@@ -3200,7 +3200,7 @@ with tab7:
 	)
 
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
-	st.plotly_chart(fig14, use_container_width=True)
+	st.plotly_chart(fig14, use_container_width=True, key="fig14_line3203")
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 
 	st.markdown('<h4><div style="text-align: left;">📋各期间现状整理（不当发生部分）</div></h4>', unsafe_allow_html=True)
