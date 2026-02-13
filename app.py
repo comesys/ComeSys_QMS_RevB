@@ -3738,7 +3738,7 @@ with tab13:
 
 
     # 동영상 출력
-    video_path = Path(__file__).parent / "movie" / "제품소개동영상.mp4"
+    video_path = Path(__file__).parent / "movie" / "product_intro.mp4"
 
 st.write("VIDEO PATH =", str(video_path))
 st.write("EXISTS =", video_path.exists())
