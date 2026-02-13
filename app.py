@@ -3735,8 +3735,7 @@ with tab12:
 with tab13:
     st.write("ComeSys Production Introduction")
 
-    # 동영상 파일 경로
-    video_path = "./movie/제품소개동영상.mp4"
+
 
     # 동영상 출력
     video_path = Path(__file__).parent / "movie" / "제품소개동영상.mp4"
