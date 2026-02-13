@@ -3736,7 +3736,7 @@ with tab13:
     st.write("ComeSys Production Introduction")
 
     # 동영상 파일 경로
-    video_path = "./movie/제품소개동영상0000-16526.mp4"
+    video_path = "./movie/제품소개동영상.mp4"
 
     # 동영상 출력
     st.video(video_path)
