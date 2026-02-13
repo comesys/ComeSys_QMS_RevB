@@ -3739,7 +3739,21 @@ with tab13:
     video_path = "./movie/제품소개동영상.mp4"
 
     # 동영상 출력
-    st.video(video_path)
+    video_path = Path(__file__).parent / "movie" / "제품소개동영상.mp4"
+
+st.write("VIDEO PATH =", str(video_path))
+st.write("EXISTS =", video_path.exists())
+st.write("SIZE =", video_path.stat().st_size if video_path.exists() else None)
+
+if video_path.exists():
+    st.video(str(video_path))
+else:
+    st.error("❌ video 파일이 서버에 없음. 경로/파일명 확인 필요")
+
+
+
+
+
     # ###################################################################################
 	# word = 'intitle:대동공업 | intitle:대동기어 | intitle:엠트론 | intitle:tym | intitle:현대건설기계 | intitle:클라크머터리얼 | intitle:우진산전 | intitle:타타대우상용차 |\
     #         intitle:반도체수급 | intitle:호룡 | intitle:동서콘트롤 | intitle:현대상용차 | intitle:영안모자 | intitle:HSD엔진 | intitle:대동모빌리티'
