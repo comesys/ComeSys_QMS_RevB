@@ -3739,22 +3739,14 @@ with tab13:
 
     # 동영상 출력
 # 상대 경로 직접 지정
-video_rel_path = "movie/product_intro.mp4"
+video_path = "movie/intro_v1.mp4" 
 
-if os.path.exists(video_rel_path):
-    # 파일을 직접 읽어서 넘겨주면 경로 인식 문제를 피할 수 있습니다.
-    with open(video_rel_path, 'rb') as f:
+if os.path.exists(video_path):
+    with open(video_path, 'rb') as f:
         video_bytes = f.read()
     st.video(video_bytes)
-    
-    # 정보 출력 (확인용)
-    st.write(f"✅ 파일 크기: {os.path.getsize(video_rel_path)} bytes")
 else:
-    st.error("❌ 파일을 찾을 수 없습니다.")
-    # 실제 현재 위치에 무엇이 있는지 출력해봅니다.
-    st.write("현재 폴더 목록:", os.listdir("."))
-    if os.path.exists("movie"):
-        st.write("movie 폴더 내용:", os.listdir("movie"))
+    st.error(f"파일을 찾을 수 없습니다: {video_path}")
 
 
 
