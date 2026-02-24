@@ -1826,7 +1826,7 @@ with tab1:
 
 		fig9.update_layout(
 			title=dict(text="♋출하검사 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.10, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="부적합수량",
 				range=[-(max([출하검사부적합합계_prev2, 출하검사부적합합계_prev1, 출하검사부적합합계_current])*2.2), 
