@@ -1147,9 +1147,9 @@ with tab0:
 
 		fig7.update_layout(
 			legend_yanchor="top",
-			legend_y=1.12,
+			legend_y=0.95,
 			legend_xanchor="left",
-			legend_x=0.65,
+			legend_x=0.95,
 			yaxis=dict(
 				range=[-(부적합수량_리스트[-1]*2),부적합수량_리스트[-1]*2]
 			),
