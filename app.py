@@ -1699,7 +1699,7 @@ with tab1:
 			),
 			legend=dict(
 				yanchor="top",
-				y=0.9,
+				y=1.0,
 				xanchor="left",
 				x=0.6,
 				bgcolor="rgba(0,0,0,0.3)",
@@ -1779,7 +1779,7 @@ with tab1:
 
 		fig8.update_layout(
 			title=dict(text="♋공정검사 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="부적합수량",
 				range=[-(max([공정검사부적합합계_prev2, 공정검사부적합합계_prev1, 공정검사부적합합계_current])*2.2), 
@@ -1826,7 +1826,7 @@ with tab1:
 
 		fig9.update_layout(
 			title=dict(text="♋출하검사 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.10, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="부적합수량",
 				range=[-(max([출하검사부적합합계_prev2, 출하검사부적합합계_prev1, 출하검사부적합합계_current])*2.2), 
@@ -1864,7 +1864,7 @@ with tab1:
 
 		fig10.update_layout(
 			title=dict(text="♍고객사 라인 부적합 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="부적합수량",
 				range=[0, max([고객사라인부적합현황합계_prev2, 고객사라인부적합현황합계_prev1, 고객사라인부적합현황합계_current])*1.5],
@@ -1899,7 +1899,7 @@ with tab1:
 
 		fig11.update_layout(
 			title=dict(text="♎필드 클레임 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="발생건수",
 				range=[-(max([필드클레임수량합계_prev2, 필드클레임수량합계_prev1, 필드클레임수량합계_current])*2),
@@ -1939,7 +1939,7 @@ with tab1:
 		
 		fig12.update_layout(
 			title=dict(text="♏Q COST 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="발생건수",
 				range=[-(max([수량현황합계_prev2, 수량현황합계_prev1, 수량현황합계_current])*2),
@@ -2638,7 +2638,7 @@ with tab3:
 
 		fig13.update_layout(
 			title=dict(text="♎곤산 수입검사 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="부적합수량",
 				range=[-(max([곤산수입검사부적합합계_prev2, 곤산수입검사부적합합계_prev1, 곤산수입검사부적합합계_current])*2.2), 
@@ -2679,7 +2679,7 @@ with tab3:
 
 		fig14.update_layout(
 			title=dict(text="♎곤산 공정검사 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="부적합수량",
 				range=[-(max([곤산공정검사부적합합계_prev2, 곤산공정검사부적합합계_prev1, 곤산공정검사부적합합계_current])*2.2), 
@@ -2719,7 +2719,7 @@ with tab3:
 
 		fig15.update_layout(
 			title=dict(text="♎곤산 출하검사 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.6, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="부적합수량",
 				range=[-(max([곤산출하검사부적합합계_prev2, 곤산출하검사부적합합계_prev1, 곤산출하검사부적합합계_current])*2.2), 
@@ -2753,7 +2753,7 @@ with tab3:
 
 		fig16.update_layout(
 			title=dict(text="♎곤산 고객사 라인 부적합 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="부적합수량",
 				range=[0, max([곤산고객사라인부적합현황합계_prev2, 곤산고객사라인부적합현황합계_prev1, 곤산고객사라인부적합현황합계_current])*1.5],
@@ -2788,7 +2788,7 @@ with tab3:
 
 		fig17.update_layout(
 			title=dict(text="♎곤산 필드 클레임 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="발생건수",
 				range=[-(max([곤산필드클레임수량합계_prev2, 곤산필드클레임수량합계_prev1, 곤산필드클레임수량합계_current])*2),
@@ -2831,7 +2831,7 @@ with tab3:
 		
 		fig18.update_layout(
 			title=dict(text="♏곤산 Q COST 년도별 현황", font=dict(size=18), x=0.5, xanchor='center'),
-			legend=dict(yanchor="top", y=1.15, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
+			legend=dict(yanchor="top", y=1.0, xanchor="left", x=0.05, bgcolor="rgba(0,0,0,0.3)"),
 			yaxis=dict(
 				title="발생건수",
 				range=[-(max([곤산수량현황합계_prev2, 곤산수량현황합계_prev1, 곤산수량현황합계_current])*2),
