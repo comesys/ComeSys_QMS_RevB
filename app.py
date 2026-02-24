@@ -14,7 +14,7 @@ import requests
 import base64
 from urllib import request
 from PIL import Image
-from io import BytesIO
+from io import BytesIO	
 import FinanceDataReader as fdr
 import os
 import random
@@ -3738,15 +3738,15 @@ with tab13:
 
 
     # 동영상 출력
-# 상대 경로 직접 지정
-video_path = "movie/product_intro_new.mp4" 
+	# 상대 경로 직접 지정
+	video_path = "movie/product_intro_new.mp4" 
 
-if os.path.exists(video_path):
-    with open(video_path, 'rb') as f:
-        video_bytes = f.read()
-    st.video(video_bytes)
-else:
-    st.error(f"파일을 찾을 수 없습니다: {video_path}")
+	if os.path.exists(video_path):
+	    with open(video_path, 'rb') as f:
+	        video_bytes = f.read()
+	    st.video(video_bytes)
+	else:
+	    st.error(f"파일을 찾을 수 없습니다: {video_path}")
 
 
 
