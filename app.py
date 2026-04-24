@@ -3536,7 +3536,6 @@ with tab11:
 	col16, col17 = st.columns([0.8,1])
 	with col16:
 		ph1 = st.empty()
-		# st.subheader(""+datetime.now(gettz('Asia/Seoul')).strftime('%Y년%m월%d일'))
 		city_select = st.selectbox('도시 선택',['Busan','Kunshan'])
 		API_KEY = "1c3e11985281e02fbe28fad4cdca481d"
 
@@ -3572,8 +3571,6 @@ with tab11:
 		with col20:
 			st.text('')
 		st.markdown('현재 날씨 : '+ 현재날씨 +'   ;   '+'visibility: '+visibility+'km')
-		# st.markdown('체감 온도 : '+str(현재최감온도) +'℃'+'   ;   현재 온도 : '+str(현재온도) +'℃')
-		# st.markdown('현재 풍속 : '+str(현재풍속)+'m/sec'+'   ;   구름 상태 : '+str(현재구름상태) +'%'+'   ;   습도 : '+str(현재습도) +'%' )
 		st.markdown('일출 시간 : '+str(일출시간) + '   ;   일몰 시간 : '+str(일몰시간))
 
 	with col17:
@@ -3602,12 +3599,9 @@ with tab11:
 		최고온도_리스트 =[max(최고온도_리스트[0:8]),max(최고온도_리스트[8:16]),max(최고온도_리스트[16:24]),max(최고온도_리스트[24:32]),max(최고온도_리스트[32:40])]
 
 		주간날씨_예보 = list(zip(날씨_상태[1:-1:8],최저온도_리스트,최고온도_리스트,습도_리스트[1:-1:8],풍향_리스트[1:-1:8]))
-
 		주간날씨_예보 = pd.DataFrame(주간날씨_예보)
-		
 		주간날씨_예보 = 주간날씨_예보.rename(index={0:날짜_리스트[0],1:날짜_리스트[1],2:날짜_리스트[2],3:날짜_리스트[3],4:날짜_리스트[4]})
 		주간날씨_예보.columns = ['날씨상태','최저온도(℃)','최고온도(℃)','습도(%)','풍속(m/sec)']
-
 		주간날씨_예보["IMAGE"] = 날씨_img_리스트[0:-1:8]		
 
 		def path_to_image_html(path):
@@ -3617,106 +3611,47 @@ with tab11:
 		def convert_df(input_df):
 			return input_df.to_html(escape=False, formatters=dict(IMAGE=path_to_image_html))
 		html = convert_df(주간날씨_예보)
-
 		st.markdown(html , unsafe_allow_html=True)
 
-		current_time = datetime.now()
-		yesterday_time = current_time - timedelta(1)
-		today = str(current_time.year)+'.'+str(current_time.month)+'.'+str(current_time.day)
-		yesterday = str(yesterday_time.year)+'.'+str(yesterday_time.month)+'.'+str(yesterday_time.day)
+		# --- [수정된 주식 데이터 호출 섹션] ---
+		# 최근 10일간의 데이터를 가져와서 휴장일 문제를 방지합니다.
+		stock_start = (datetime.now() - timedelta(days=10)).strftime('%Y-%m-%d')
+		stock_end = datetime.now().strftime('%Y-%m-%d')
 
+		# 데이터를 안전하게 가져오는 헬퍼 함수
+		def get_safe_stock(ticker):
+			try:
+				df = fdr.DataReader(ticker, stock_start, stock_end)
+				if not df.empty and len(df) >= 2:
+					current_price = int(df['Close'].iloc[-1])
+					prev_price = int(df['Close'].iloc[-2])
+					return [current_price], current_price - prev_price
+				elif not df.empty and len(df) == 1:
+					return [int(df['Close'].iloc[-1])], 0
+				else:
+					return [0], 0
+			except:
+				return [0], 0
 
-		if fdr.DataReader('000490',''+today+'').empty == True:
-			대동공업 = fdr.DataReader('000490',''+yesterday+'')
-			대동공업 = [대동공업['Close'][i] for i in range(len(대동공업['Close']))]
-		else:
-			대동공업 = fdr.DataReader('000490',''+today+'')
-			대동공업 = [대동공업['Close'][i] for i in range(len(대동공업['Close']))]
-
-		대동공업_yesterday = fdr.DataReader('000490',''+yesterday+'')
-		대동공업_yesterday = [대동공업_yesterday['Close'][i] for i in range(len(대동공업_yesterday['Close']))]
-		try:
-			대동공업_주식변동 = int(대동공업[-1]-대동공업_yesterday[0])
-		except:
-			대동공업_주식변동 = 0
-
-		if fdr.DataReader('008830',''+today+'').empty == True:
-			대동기어 = fdr.DataReader('008830',''+yesterday+'')
-			대동기어 = [대동기어['Close'][i] for i in range(len(대동기어['Close']))]
-		else:
-			대동기어 = fdr.DataReader('008830',''+today+'')
-			대동기어 = [대동기어['Close'][i] for i in range(len(대동기어['Close']))]
-
-		대동기어_yesterday = fdr.DataReader('008830',''+yesterday+'')
-		대동기어_yesterday = [대동기어_yesterday['Close'][i] for i in range(len(대동기어_yesterday['Close']))]
-		try:
-			대동기어_주식변동 = int(대동기어[-1]-대동기어_yesterday[0])
-		except:
-			대동기어_주식변동 = 0
-
-		if fdr.DataReader('267270',''+today+'').empty == True:
-			현대건설기계 = fdr.DataReader('267270',''+yesterday+'')
-			현대건설기계 = [현대건설기계['Close'][i] for i in range(len(현대건설기계['Close']))]
-		else:
-			현대건설기계 = fdr.DataReader('267270',''+today+'')
-			현대건설기계 = [현대건설기계['Close'][i] for i in range(len(현대건설기계['Close']))]
-
-		현대건설기계_yesterday = fdr.DataReader('267270',''+yesterday+'')
-		현대건설기계_yesterday = [현대건설기계_yesterday['Close'][i] for i in range(len(현대건설기계_yesterday['Close']))]
-		try:
-			현대건설기계_주식변동 = int(현대건설기계[-1]-현대건설기계_yesterday[0])
-		except:
-			현대건설기계_주식변동 = 0
-
-		if fdr.DataReader('002900',''+today+'').empty == True:
-			TYM = fdr.DataReader('002900',''+yesterday+'')
-			TYM = [TYM['Close'][i] for i in range(len(TYM['Close']))]
-		else:
-			TYM = fdr.DataReader('002900',''+today+'')
-			TYM = [TYM['Close'][i] for i in range(len(TYM['Close']))]
-
-		TYM_yesterday = fdr.DataReader('002900',''+yesterday+'')
-		TYM_yesterday = [TYM_yesterday['Close'][i] for i in range(len(TYM_yesterday['Close']))]
-		try:
-			TYM_주식변동 = int(TYM[-1]-TYM_yesterday[0])
-		except:
-			TYM_주식변동 = 0
+		대동공업, 대동공업_주식변동 = get_safe_stock('000490')
+		대동기어, 대동기어_주식변동 = get_safe_stock('008830')
+		현대건설기계, 현대건설기계_주식변동 = get_safe_stock('267270')
+		TYM, TYM_주식변동 = get_safe_stock('002900')
+		# --- [수정 끝] ---
 
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
 	col27, col28, col29, col30, col31, col32, col33, col34, col35 = st.columns([0.15,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5])
-	# with col27:
-	# 	st.empty()
-	# with col28:	
-	# 	st.metric(label="💵USD", value=round(dollar_data[-1],2), delta=round(dollar_data[-1] - dollar_data_yesterday[-1],2),delta_color="inverse")
-	# with col29:	
-	# 	st.metric(label="💷CNY", value=round(cny_data[-1],2), delta=round(cny_data[-1] - cny_data_yesterday[-1],2),delta_color="inverse")
-	# with col30:	
-	# 	st.metric(label="💴JPN", value=round(jpn_data[-1],2), delta=round(jpn_data[-1] - jpn_data_yesterday[-1],2),delta_color="inverse")
-	# with col31:	
-	# 	st.metric(label="💶EUR", value=round(eur_data[-1],2), delta=round(eur_data[-1] - eur_data_yesterday[-1],2),delta_color="inverse")
+
 	with col32:
-		try:
-			st.metric(label="🚜대동공업 주가", value=format(대동공업[-1],','), delta=대동공업_주식변동,delta_color="inverse")
-		except:
-			st.metric(label="🚜대동공업 주가", value=format(0,','),delta=대동공업_주식변동,delta_color="inverse")
+		st.metric(label="🚜대동공업 주가", value=format(대동공업[-1],','), delta=대동공업_주식변동, delta_color="inverse")
 	with col33:
-		try:
-			st.metric(label="🚛대동기어 주가", value=format(대동기어[-1],','), delta=대동기어_주식변동,delta_color="inverse")
-		except:
-			st.metric(label="🚛대동기어 주가", value=format(0,','), delta=대동기어_주식변동,delta_color="inverse")
+		st.metric(label="🚛대동기어 주가", value=format(대동기어[-1],','), delta=대동기어_주식변동, delta_color="inverse")
 	with col34:
-		try:
-			st.metric(label="🚋현대건설기계 주가", value=format(현대건설기계[-1],','), delta=현대건설기계_주식변동,delta_color="inverse")
-		except:
-			st.metric(label="🚋현대건설기계 주가", value=format(0,','), delta=현대건설기계_주식변동,delta_color="inverse")
+		st.metric(label="🚋현대건설기계 주가", value=format(현대건설기계[-1],','), delta=현대건설기계_주식변동, delta_color="inverse")
 	with col35:
-		try:
-			st.metric(label="🚒TYM 주가", value=format(TYM[-1],','), delta=TYM_주식변동,delta_color="inverse")
-		except:
-			st.metric(label="🚒TYM 주가", value=format(0,','), delta=TYM_주식변동,delta_color="inverse")
+		st.metric(label="🚒TYM 주가", value=format(TYM[-1],','), delta=TYM_주식변동, delta_color="inverse")
 
 	st.markdown("""<hr style="height:2px;border:none;color:#dedcdc;background-color:#dedcdc;" /> """, unsafe_allow_html=True)
-
 with tab12:
 	# Path to the image folder
 	image_folder = "./image/"
